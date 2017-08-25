@@ -10,9 +10,9 @@ Script for installing dependencies using npm or yarn as a `postmerge` [git-hook]
 
 ## Install
 
-<!-- AUTO-GENERATED-CONTENT:START (INSTALL:flags=["--save-dev"]) -->
+<!-- AUTO-GENERATED-CONTENT:START (INSTALL:flags=["-D"]) -->
 ```sh
-npm install --save-dev install-deps-postmerge
+yarn add -D install-deps-postmerge
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

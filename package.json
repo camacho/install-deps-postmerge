@@ -1,6 +1,6 @@
 {
   "name": "install-deps-postmerge",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Install package.json dependencies using npm or yarn as git post merge hook",
   "license": "MIT",
   "engines": {
@@ -67,7 +67,7 @@
     "markdown-magic-dependency-table": "^1.2.2",
     "markdown-magic-directory-tree": "^1.2.1",
     "markdown-magic-engines": "^1.0.1",
-    "markdown-magic-install-command": "^1.2.1",
+    "markdown-magic-install-command": "^1.3.1",
     "markdown-magic-package-scripts": "^1.2.0",
     "markdown-magic-prettier": "^1.0.3",
     "npm-run-all": "^4.0.2",
