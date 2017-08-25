@@ -1,21 +1,31 @@
 {
   "name": "install-deps-postmerge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Install package.json dependencies using npm or yarn as git post merge hook",
-  "main": "index.js",
-  "bin": ".bin/index.js",
+  "license": "MIT",
   "engines": {
     "node": ">=7.6.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camacho/install-deps-postmerge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/camacho/install-deps-postmerge/issues"
+  },
+  "homepage": "https://github.com/camacho/install-deps-postmerge#readme",
+  "author": "Patrick <patrick@daftdevelopers.com>",
+  "bin": ".bin/index.js",
+  "main": "index.js",
   "scripts": {
     "docs": "scripts/markdown.js",
     "format": "npm-run-all format:*",
     "format:js": "prettier --single-quote --trailing-comma es5 --write \"{lib,scripts,.bin}/**/*.js\"",
-    "format:pkg": "./.bin/index.js -w -p package.json",
+    "format:pkg": "format-package -w -q",
     "lint": "eslint \"{lib,scripts,.bin}/**/*.js\" --fix",
+    "postmerge": "./.bin/index.js",
     "precommit": "lint-staged && yarn docs",
     "prepush": "yarn test",
-    "postmerge": "./.bin/index.js",
     "test": "jest"
   },
   "lint-staged": {
@@ -29,10 +39,6 @@
       "git add"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/camacho/install-deps-postmerge.git"
-  },
   "keywords": [
     "git",
     "hook",
@@ -43,12 +49,6 @@
     "deps",
     "pull"
   ],
-  "author": "Patrick <patrick@daftdevelopers.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/camacho/install-deps-postmerge/issues"
-  },
-  "homepage": "https://github.com/camacho/install-deps-postmerge#readme",
   "dependencies": {
     "execa": "^0.8.0",
     "yarn-or-npm": "^2.0.4"
@@ -60,6 +60,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "format-package": "^2.0.1",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.3",
     "markdown-magic": "^0.1.17",

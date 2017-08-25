@@ -3,8 +3,6 @@
 const install = require('../index.js');
 const onError = require('../lib/onError.js');
 
-try {
-  install();
-} catch (error) {
-  onError(error);
-}
+install()
+  .then(b => console.log(b ? 'Dependencies updated!' : 'No new dependencies!'))
+  .catch(onError);

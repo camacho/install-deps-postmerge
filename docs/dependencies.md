@@ -24,6 +24,7 @@
  | [eslint-plugin-import@^2.7.0](https://github.com/benmosher/eslint-plugin-import) | Import with sanity. | 2.7.0 | dev | 
  | [eslint-plugin-jsx-a11y@^5.1.1](https://github.com/evcohen/eslint-plugin-jsx-a11y) | Static AST checker for accessibility rules on JSX elements. | 5.1.1 | dev | 
  | [eslint-plugin-react@^7.3.0](https://github.com/yannickcr/eslint-plugin-react) | React specific linting rules for ESLint | 7.3.0 | dev | 
+ | [format-package@^2.0.1](https://github.com/camacho/format-package#readme) | Sensible formatting and ordering of package.json | 2.0.1 | dev | 
  | [jest@^20.0.4](http://facebook.github.io/jest/) | Delightful JavaScript Testing. | 20.0.4 | dev | 
  | [lint-staged@^4.0.3](https://github.com/okonet/lint-staged#readme) | Lint files staged by git | 4.0.4 | dev | 
  | [markdown-magic@^0.1.17](https://npmjs.org/package/markdown-magic) | Automatically update markdown files with content from external sources | 0.1.17 | dev | 
