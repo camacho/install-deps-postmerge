@@ -1,0 +1,78 @@
+{
+  "name": "install-deps-postmerge",
+  "version": "1.0.0",
+  "description": "Install package.json dependencies using npm or yarn as git post merge hook",
+  "main": "index.js",
+  "bin": ".bin/index.js",
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "scripts": {
+    "docs": "scripts/markdown.js",
+    "format": "npm-run-all format:*",
+    "format:js": "prettier --single-quote --trailing-comma es5 --write \"{lib,scripts,.bin}/**/*.js\"",
+    "format:pkg": "./.bin/index.js -w -p package.json",
+    "lint": "eslint \"{lib,scripts,.bin}/**/*.js\" --fix",
+    "precommit": "lint-staged && yarn docs",
+    "prepush": "yarn test",
+    "postmerge": "./.bin/index.js",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --trailing-comma es5 --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "package.json": [
+      "format:pkg",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camacho/install-deps-postmerge.git"
+  },
+  "keywords": [
+    "git",
+    "hook",
+    "post",
+    "merge",
+    "install",
+    "dependences",
+    "deps",
+    "pull"
+  ],
+  "author": "Patrick <patrick@daftdevelopers.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/camacho/install-deps-postmerge/issues"
+  },
+  "homepage": "https://github.com/camacho/install-deps-postmerge#readme",
+  "dependencies": {
+    "execa": "^0.8.0",
+    "yarn-or-npm": "^2.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "jest": "^20.0.4",
+    "lint-staged": "^4.0.3",
+    "markdown-magic": "^0.1.17",
+    "markdown-magic-dependency-table": "^1.2.2",
+    "markdown-magic-directory-tree": "^1.2.1",
+    "markdown-magic-engines": "^1.0.1",
+    "markdown-magic-install-command": "^1.2.1",
+    "markdown-magic-package-scripts": "^1.2.0",
+    "markdown-magic-prettier": "^1.0.3",
+    "npm-run-all": "^4.0.2",
+    "prettier": "^1.5.3"
+  },
+  "optionalDependencies": {
+    "husky": "^0.14.3"
+  }
+}
