@@ -1,6 +1,6 @@
-const findChangedFiles = require('./lib/git');
-const install = require('./lib/install');
-const defaults = require('./lib/defaults');
+const findChangedFiles = require('./src/git');
+const install = require('./src/install');
+const defaults = require('./src/defaults');
 
 async function installDepsPostMerge(_options = {}) {
   const options = Object.assign({}, defaults, _options);

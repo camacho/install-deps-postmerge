@@ -1,22 +1,27 @@
 # install-deps-postmerge
+
 Script for installing dependencies using npm or yarn as a `postmerge` [git-hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks).
 
 <!-- AUTO-GENERATED-CONTENT:START (TOC) -->
+
 - [Install](#install)
 - [What does this module do?](#what-does-this-module-do)
 - [How do I use it in my project?](#how-do-i-use-it-in-my-project)
 - [Requirements](#requirements)
-<!-- AUTO-GENERATED-CONTENT:END -->
+  <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Install
 
 <!-- AUTO-GENERATED-CONTENT:START (INSTALL:flags=["--save-dev"]) -->
+
 ```sh
 npm install --save-dev install-deps-postmerge
 ```
+
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## What does this module do?
+
 This script will git a list of files by running:
 
 ```sh
@@ -53,8 +58,9 @@ npm run -s postmerge
 yarn -s postmerge
 ```
 
-
 ## Requirements
+
 <!-- AUTO-GENERATED-CONTENT:START (ENGINES) -->
-* **node**: >=7.6.0
-<!-- AUTO-GENERATED-CONTENT:END -->
+
+- **node**: >=7.6.0
+  <!-- AUTO-GENERATED-CONTENT:END -->
