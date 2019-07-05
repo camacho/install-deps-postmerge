@@ -1,6 +1,6 @@
 {
   "name": "install-deps-postmerge",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Install package.json dependencies using npm or yarn as git post merge hook",
   "license": "MIT",
   "engines": {
@@ -15,30 +15,6 @@
   },
   "homepage": "https://github.com/camacho/install-deps-postmerge#readme",
   "author": "Patrick <patrick@daftdevelopers.com>",
-  "bin": ".bin/index.js",
-  "main": "index.js",
-  "scripts": {
-    "docs": "scripts/markdown.js",
-    "format": "npm-run-all format:*",
-    "format:js": "prettier --single-quote --trailing-comma es5 --write \"{lib,scripts,.bin}/**/*.js\"",
-    "format:pkg": "format-package -w -q",
-    "lint": "eslint \"{lib,scripts,.bin}/**/*.js\" --fix",
-    "postmerge": "./.bin/index.js",
-    "precommit": "lint-staged && yarn docs",
-    "prepush": "yarn test",
-    "test": "jest"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --single-quote --trailing-comma es5 --write",
-      "eslint --fix",
-      "git add"
-    ],
-    "package.json": [
-      "format:pkg",
-      "git add"
-    ]
-  },
   "keywords": [
     "git",
     "hook",
@@ -49,29 +25,52 @@
     "deps",
     "pull"
   ],
+  "bin": ".bin/index.js",
+  "main": "index.js",
+  "scripts": {
+    "docs": "scripts/markdown.js",
+    "format": "npm-run-all formatPackage formatSource",
+    "formatPackage": "format-package -wq",
+    "formatSource": "prettier \"**/**{md,js,json,ts}\" --write",
+    "gamut": "npm-run-all reset docs format lint test",
+    "lint": "eslint ./{lib,scripts} --ext .js",
+    "prepublishOnly": "yarn run gamut",
+    "reset": "rimraf node_modules",
+    "postreset": "yarn install",
+    "test": "echo no tests"
+  },
+  "lint-staged": {
+    "*.{md,js,json}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "format-package -wq",
+      "git add"
+    ]
+  },
   "dependencies": {
-    "execa": "^0.8.0",
+    "execa": "2.0.3",
     "yarn-or-npm": "^2.0.4"
   },
   "devDependencies": {
-    "eslint": "^4.5.0",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.3.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.3.0",
-    "format-package": "^2.0.1",
-    "jest": "^20.0.4",
-    "lint-staged": "^4.0.3",
-    "markdown-magic": "^0.1.17",
-    "markdown-magic-dependency-table": "^1.2.2",
-    "markdown-magic-directory-tree": "^1.2.1",
-    "markdown-magic-engines": "^1.0.1",
-    "markdown-magic-install-command": "^1.3.1",
-    "markdown-magic-package-scripts": "^1.2.0",
-    "markdown-magic-prettier": "^1.0.3",
-    "npm-run-all": "^4.0.2",
-    "prettier": "^1.5.3"
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "format-package": "^5.0.0",
+    "lint-staged": "^9.0.2",
+    "markdown-magic": "^0.1.25",
+    "markdown-magic-dependency-table": "^1.3.2",
+    "markdown-magic-directory-tree": "^1.2.3",
+    "markdown-magic-install-command": "^^1.3.1",
+    "markdown-magic-package-scripts": "^1.2.1",
+    "markdown-magic-prettier": "^1.0.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3"
   },
   "optionalDependencies": {
     "husky": "^0.14.3"

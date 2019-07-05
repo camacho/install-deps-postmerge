@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "post-merge": "./bin/index.js",
+    "pre-commit": "lint-staged && yarn docs",
+    "pre-push": "yarn test"
+  }
+}

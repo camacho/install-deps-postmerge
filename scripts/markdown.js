@@ -8,7 +8,6 @@ const markdownMagic = require('markdown-magic');
 const SCRIPTS = require('markdown-magic-package-scripts');
 const DEPENDENCYTABLE = require('markdown-magic-dependency-table');
 const PRETTIER = require('markdown-magic-prettier');
-const ENGINES = require('markdown-magic-engines');
 const INSTALL = require('markdown-magic-install-command');
 
 const root = path.resolve(__dirname, '..');
@@ -20,7 +19,6 @@ const config = {
     SCRIPTS,
     DEPENDENCYTABLE,
     PRETTIER,
-    ENGINES,
     INSTALL,
   },
 };
