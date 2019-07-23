@@ -1,6 +1,6 @@
 {
   "name": "install-deps-postmerge",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Install package.json dependencies using npm or yarn as git post merge hook",
   "license": "MIT",
   "engines": {
@@ -25,7 +25,7 @@
     "deps",
     "pull"
   ],
-  "bin": ".bin/index.js",
+  "bin": "bin/index.js",
   "main": "index.js",
   "scripts": {
     "docs": "scripts/markdown.js",
