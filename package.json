@@ -1,6 +1,6 @@
 {
   "name": "install-deps-postmerge",
-  "version": "0.0.0-development",
+  "version": "1.1.0",
   "description": "Install package.json dependencies whenever needed after a git merge",
   "license": "MIT",
   "engines": {

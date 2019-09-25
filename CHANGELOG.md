@@ -1,3 +1,14 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [1.1.0](https://github.com/camacho/install-deps-postmerge/compare/v1.0.5...v1.1.0) (2019-09-25)
+
+### Features
+
+- **repo:** moved to typescript and added additional semantic publishing ([53ab906](https://github.com/camacho/install-deps-postmerge/commit/53ab906))
+
 # 1.0.5 (2019-06-23)
 
 ### Bug Fixes
