@@ -1,14 +1,14 @@
 {
   "name": "install-deps-postmerge",
-  "version": "1.0.5",
-  "description": "Install package.json dependencies using npm or yarn as git post merge hook",
+  "version": "0.0.0-development",
+  "description": "Install package.json dependencies whenever needed after a git merge",
   "license": "MIT",
   "engines": {
-    "node": ">=7.6.0"
+    "node": ">=8.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/camacho/install-deps-postmerge.git"
+    "url": "https://github.com/camacho/install-deps-postmerge.git"
   },
   "bugs": {
     "url": "https://github.com/camacho/install-deps-postmerge/issues"
@@ -25,54 +25,120 @@
     "deps",
     "pull"
   ],
-  "bin": "bin/index.js",
-  "main": "index.js",
+  "bin": {
+    "idpm": "dist/cli/index.js",
+    "install-deps-postmerge": "dist/cli/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
   "scripts": {
-    "docs": "scripts/markdown.js",
-    "format": "npm-run-all formatPackage formatSource",
-    "formatPackage": "format-package -wq",
-    "formatSource": "prettier \"**/**{md,js,json,ts}\" --write",
-    "gamut": "npm-run-all reset docs format lint test",
-    "lint": "eslint ./{lib,scripts} --ext .js",
-    "prepublishOnly": "yarn run gamut",
-    "reset": "rimraf node_modules",
-    "postreset": "yarn install",
-    "test": "echo no tests"
+    "prebuild": "yon clean",
+    "build": "tsc",
+    "clean": "rm -rf dist/*",
+    "dev": "tsc -w",
+    "docs": "ts-node scripts/markdown.ts",
+    "format": "npm-run-all format-*",
+    "format-package": "format-package \"**/package.json\" \"!**/__fixtures__/**\" --write",
+    "format-source": "prettier \"**/**{md,js,json,ts}\" --write",
+    "gamut": "npm-run-all format lint type-check test build",
+    "lint": "eslint . --ext .ts",
+    "prerelease": "yon gamut",
+    "release": "node-env-run --exec 'semantic-release --ci false'",
+    "release-ci": "semantic-release",
+    "release-dry-run": "node-env-run --exec 'semantic-release --ci false --dry-run'",
+    "reset": "rm -rf node_modules dist/*",
+    "start": "node ./dist/cli/index.js",
+    "start-dev": "ts-node ./src/cli/index.js",
+    "test": "echo No tests yet.",
+    "type-check": "tsc --noEmit"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-merge": "install-deps-postmerge",
+      "pre-commit": "lint-staged",
+      "pre-push": "yon test"
+    }
   },
   "lint-staged": {
-    "*.{md,js,json}": [
+    "*.md": [
+      "yon docs",
+      "prettier --write",
+      "git add"
+    ],
+    "*.ts": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "*.{js,json}": [
       "prettier --write",
       "git add"
     ],
     "package.json": [
-      "format-package -wq",
+      "format-package -w",
       "git add"
     ]
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "header-max-length": [
+        2,
+        "always",
+        100
+      ],
+      "scope-case": [
+        0
+      ]
+    }
+  },
   "dependencies": {
-    "execa": "2.0.3",
-    "yarn-or-npm": "^2.0.4"
+    "execa": "^2.0.4",
+    "yarn-or-npm": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "^2.18.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@jedmao/semantic-release-npm-github-config": "^1.0.6",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/exec": "^3.3.7",
+    "@semantic-release/git": "^7.0.16",
+    "@types/node": "^12.7.7",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.2",
-    "format-package": "^5.0.0",
-    "lint-staged": "^9.0.2",
-    "markdown-magic": "^0.1.25",
-    "markdown-magic-dependency-table": "^1.3.2",
-    "markdown-magic-directory-tree": "^1.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "format-package": "^5.2.0",
+    "lint-staged": "^9.3.0",
+    "markdown-magic": "^1.0.0",
     "markdown-magic-install-command": "^^1.3.1",
-    "markdown-magic-package-scripts": "^1.2.1",
-    "markdown-magic-prettier": "^1.0.4",
+    "node-env-run": "^3.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
-    "rimraf": "^2.6.3"
+    "semantic-release": "^15.13.24",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
   },
   "optionalDependencies": {
-    "husky": "^0.14.3"
+    "husky": "^3.0.5"
   }
 }

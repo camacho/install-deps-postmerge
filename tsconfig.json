@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "strictNullChecks": true,
+    "target": "es2015"
+  },
+  "exclude": [
+    "test/**",
+    "**/__fixtures__/**",
+    "**/__mocks__/**",
+    "**/**.test.ts",
+    "node_modules",
+    "dist"
+  ],
+  "include": ["src"]
+}
