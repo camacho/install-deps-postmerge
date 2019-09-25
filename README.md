@@ -38,14 +38,15 @@ It can be used as part of a `postmerge` [npm script](https://docs.npmjs.com/misc
 
 ```json
 {
-  "scripts": {
-    "postmerge": "install-deps-postmerge"
+  ...
+  "husky": {
+    "hooks": {
+      "post-merge": "install-deps-postmerge"
+    }
   },
   "devDependencies": {
+    "husky": "latest",
     "install-deps-postmerge": "latest"
-  },
-  "optionalDependencies": {
-    "husky": "latest"
   }
 }
 ```
@@ -53,9 +54,10 @@ It can be used as part of a `postmerge` [npm script](https://docs.npmjs.com/misc
 Alternatively, if you do not want to use ['husky'](https://github.com/typicode/husky), the script can be added as a command in the `.git/hooks/post-merge` file:
 
 ```sh
-npm run -s postmerge
+# abbreviated command "idpm"
+npm run -s idpm
 # or
-yarn -s postmerge
+yarn -s idpm
 ```
 
 ## Requirements

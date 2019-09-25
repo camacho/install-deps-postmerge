@@ -1,5 +1,5 @@
-const yarnOrNpm = require('yarn-or-npm');
-const execa = require('execa');
+import execa from 'execa';
+import yarnOrNpm from 'yarn-or-npm';
 
 function chooseClient(foundTargets) {
   // If package.lock.json found, use npm
@@ -12,12 +12,13 @@ function chooseClient(foundTargets) {
   return yarnOrNpm();
 }
 
-function installDependencies(client, options = { stdio: 'inherit' }) {
+function installDependencies(
+  client: 'yarn' | 'npm',
+  options: execa.CommonOptions<'utf8'> = { stdio: 'inherit' }
+) {
   return execa(client, ['install'], options);
 }
 
-function install(foundTargets, options) {
+export function install(foundTargets, options?: execa.CommonOptions<'utf8'>) {
   return installDependencies(chooseClient(foundTargets), options);
 }
-
-module.exports = install;
