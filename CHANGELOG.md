@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/camacho/install-deps-postmerge/compare/v1.0.5...v2.0.0) (2020-08-23)
+
+### Bug Fixes
+
+- **diff check:** fixed improper check for npm lockfile changes ([04e3586](https://github.com/camacho/install-deps-postmerge/commit/04e3586)), closes [#9](https://github.com/camacho/install-deps-postmerge/issues/9)
+
+### Build System
+
+- **node:** bump node version to 10 ([f43afa8](https://github.com/camacho/install-deps-postmerge/commit/f43afa8))
+
+### Features
+
+- **repo:** moved to typescript and added additional semantic publishing ([33d26a5](https://github.com/camacho/install-deps-postmerge/commit/33d26a5))
+
+### BREAKING CHANGES
+
+- **node:** support for older versions of node has been dropped
+
 # [1.1.0](https://github.com/camacho/install-deps-postmerge/compare/v1.0.5...v1.1.0) (2019-09-25)
 
 ### Features
