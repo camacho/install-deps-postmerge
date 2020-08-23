@@ -44,21 +44,23 @@
   "scripts": {
     "prebuild": "yon clean",
     "build": "tsc",
-    "clean": "rm -rf dist/*",
+    "clean": "npx rimraf dist/*",
+    "commit": "npx git-cz",
     "dev": "tsc -w",
     "docs": "ts-node scripts/markdown.ts",
     "format": "npm-run-all format-*",
-    "format-package": "format-package \"**/package.json\" \"!**/__fixtures__/**\" --write",
-    "format-source": "prettier \"**/**{md,js,json,ts}\" --write",
-    "gamut": "npm-run-all format lint type-check test build",
+    "format-package": "format-package --write",
+    "format-source": "prettier . --write",
+    "gamut": "npm-run-all reset format lint type-check test build",
     "lint": "eslint . --ext .ts",
     "prerelease": "yon gamut",
     "release": "node-env-run --exec 'semantic-release --ci false'",
-    "release-ci": "semantic-release",
+    "prerelease-dry-run": "yon gamut",
     "release-dry-run": "node-env-run --exec 'semantic-release --ci false --dry-run'",
-    "reset": "rm -rf node_modules dist/*",
+    "reset": "npx rimraf node_modules dist/*",
+    "postreset": "yarn install",
     "start": "node ./dist/cli/index.js",
-    "start-dev": "ts-node ./src/cli/index.js",
+    "start-dev": "ts-node ./src/cli/index.ts",
     "test": "echo No tests yet.",
     "type-check": "tsc --noEmit"
   },
@@ -73,21 +75,17 @@
   "lint-staged": {
     "*.md": [
       "yon docs",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.ts": [
       "prettier --write",
-      "eslint",
-      "git add"
+      "eslint"
     ],
-    "*.{js,json}": [
-      "prettier --write",
-      "git add"
+    "*.{js,json,yaml,yml}": [
+      "prettier --write"
     ],
     "package.json": [
-      "format-package -w",
-      "git add"
+      "format-package -w"
     ]
   },
   "commitlint": {
@@ -106,39 +104,44 @@
     }
   },
   "dependencies": {
-    "execa": "^2.0.4",
+    "execa": "^4.0.3",
     "yarn-or-npm": "^3.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@jedmao/semantic-release-npm-github-config": "^1.0.6",
-    "@semantic-release/changelog": "^3.0.4",
-    "@semantic-release/exec": "^3.3.7",
-    "@semantic-release/git": "^7.0.16",
-    "@types/node": "^12.7.7",
-    "@typescript-eslint/eslint-plugin": "^2.3.1",
-    "@typescript-eslint/parser": "^2.3.1",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^6.4.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.3",
-    "format-package": "^5.2.0",
-    "lint-staged": "^9.3.0",
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.0.7",
+    "@semantic-release/npm": "^7.0.5",
+    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@types/markdown-magic": "^1.0.0",
+    "@types/node": "^14.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.9.1",
+    "commitizen": "^4.1.5",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-typescript": "^9.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
+    "git-cz": "^4.7.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "markdown-magic": "^1.0.0",
+    "markdown-magic-engines": "^1.0.2",
     "markdown-magic-install-command": "^^1.3.1",
-    "node-env-run": "^3.0.2",
+    "node-env-run": "^4.0.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.18.2",
-    "semantic-release": "^15.13.24",
-    "ts-node": "^8.4.1",
-    "typescript": "^3.6.3"
-  },
-  "optionalDependencies": {
-    "husky": "^3.0.5"
+    "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^17.1.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^3"
   }
 }

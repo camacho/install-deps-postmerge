@@ -8,7 +8,7 @@ Script for installing dependencies using npm or yarn as a `postmerge` [git-hook]
 - [What does this module do?](#what-does-this-module-do)
 - [How do I use it in my project?](#how-do-i-use-it-in-my-project)
 - [Requirements](#requirements)
-  <!-- AUTO-GENERATED-CONTENT:END -->
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Install
 
@@ -64,5 +64,5 @@ yarn -s idpm
 
 <!-- AUTO-GENERATED-CONTENT:START (ENGINES) -->
 
-- **node**: >=7.6.0
-  <!-- AUTO-GENERATED-CONTENT:END -->
+- **node**: >=8.0.0
+<!-- AUTO-GENERATED-CONTENT:END -->
