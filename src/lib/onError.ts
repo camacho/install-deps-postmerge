@@ -1,26 +1,29 @@
 import { RequireOnlyOne } from '../types';
 
+enum APP_ERROR_OUTPUTS {
+  stderr = 'stderr',
+  stdout = 'stdout',
+  message = 'message',
+}
+
 type AppError = Error &
-  RequireOnlyOne<{
-    stderr?: string;
-    stdout?: string;
-    message?: string;
-  }> & {
+  RequireOnlyOne<
+    {
+      [key in APP_ERROR_OUTPUTS]: string;
+    }
+  > & {
     code?: number;
   };
 
-export function onError(error: AppError) {
-  let output = 'message';
+export function onError(error: AppError): void {
+  // Prefer process outputs over error message
+  const errorMessage =
+    [
+      error[APP_ERROR_OUTPUTS.stderr],
+      error[APP_ERROR_OUTPUTS.stdout],
+      error[APP_ERROR_OUTPUTS.message],
+    ].find((message) => !!message?.trim()) || error[APP_ERROR_OUTPUTS.message];
 
-  for (const channel in ['stderr', 'stdout', 'message']) {
-    const message = error[channel];
-    if (Boolean(message && message.trim())) {
-      output = channel;
-      break;
-    }
-  }
-
-  // eslint-disable-next-line no-console
-  console.error(error[output].trim());
+  console.error(errorMessage.trim());
   process.exit(error.code || 1);
 }
