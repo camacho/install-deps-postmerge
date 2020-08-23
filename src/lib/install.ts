@@ -2,8 +2,8 @@ import execa from 'execa';
 import yarnOrNpm from 'yarn-or-npm';
 
 function chooseClient(foundTargets: string[]): 'yarn' | 'npm' {
-  // If package.lock.json found, use npm
-  if (foundTargets.includes('package.lock.json')) {
+  // If package-lock.json found, use npm
+  if (foundTargets.includes('package-lock.json')) {
     return 'npm';
   }
 
