@@ -26,8 +26,8 @@
     "pull"
   ],
   "bin": {
-    "idpm": "dist/cli/index.js",
-    "install-deps-postmerge": "dist/cli/index.js"
+    "idpm": "dist/bin/index.js",
+    "install-deps-postmerge": "dist/bin/index.js"
   },
   "main": "dist/index.js",
   "files": [
@@ -59,8 +59,8 @@
     "release-dry-run": "node-env-run --exec 'semantic-release --ci false --dry-run'",
     "reset": "npx rimraf node_modules dist/*",
     "postreset": "yarn install",
-    "start": "node ./dist/cli/index.js",
-    "start-dev": "ts-node ./src/cli/index.ts",
+    "start": "node ./dist/bin/index.js",
+    "start-dev": "ts-node ./src/bin/index.ts",
     "test": "echo No tests yet.",
     "type-check": "tsc --noEmit"
   },
