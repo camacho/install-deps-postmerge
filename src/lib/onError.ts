@@ -15,7 +15,7 @@ type AppError = Error &
     code?: number;
   };
 
-export function onError(error: AppError): void {
+export default function onError(error: AppError): void {
   // Prefer process outputs over error message
   const errorMessage =
     [

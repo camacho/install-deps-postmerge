@@ -1,5 +1,5 @@
 import install from '../index';
-import { onError } from '../lib/onError';
+import onError from '../lib/onError';
 
 install()
   .then((b) =>

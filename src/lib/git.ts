@@ -1,10 +1,9 @@
 import execa from 'execa';
 
-function findRoot(): execa.ExecaChildProcess {
+export function findRoot(): execa.ExecaChildProcess {
   return execa('git', ['rev-parse', '--show-toplevel']);
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export async function findChangedFiles(
   query: string | string[]
 ): Promise<string[]> {

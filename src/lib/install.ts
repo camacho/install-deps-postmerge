@@ -24,7 +24,7 @@ function installDependencies(
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export function install(
+export default function install(
   foundTargets: string[],
   options?: execa.CommonOptions<'utf8'>
 ): execa.ExecaChildProcess {
