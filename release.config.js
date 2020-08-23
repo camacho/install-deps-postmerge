@@ -1,10 +1,5 @@
 // Load in local environment variables for publishing
 module.exports = {
-  branch: 'master',
-  extends: '@jedmao/semantic-release-npm-github-config',
-};
-
-module.exports = {
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
@@ -30,14 +25,6 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: [
-          'dist',
-          'package.json',
-          'yarn.lock',
-          'README.md',
-          'CHANGELOG.md',
-          'LICENSE',
-        ],
         message:
           'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
