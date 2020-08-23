@@ -8,7 +8,7 @@ Script for installing dependencies using npm or yarn as a `postmerge` [git-hook]
 - [What does this module do?](#what-does-this-module-do)
 - [How do I use it in my project?](#how-do-i-use-it-in-my-project)
 - [Requirements](#requirements)
-  <!-- AUTO-GENERATED-CONTENT:END -->
+<!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Install
 
@@ -28,7 +28,7 @@ This script will git a list of files by running:
 git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
 ```
 
-It will take the results and check if `package.json`, `package.lock.json`, or `yarn.lock` is listed.
+It will take the results and check if `package.json`, `package-lock.json`, or `yarn.lock` is listed.
 
 If any of those files is found, the script will **intelligently** pick the correct client (based on which lockfile changed and falling back to [yarn-or-npm](https://github.com/camacho/yarn-or-npm)) to `install` the dependencies.
 
@@ -64,5 +64,5 @@ yarn -s idpm
 
 <!-- AUTO-GENERATED-CONTENT:START (ENGINES) -->
 
-- **node**: >=7.6.0
-  <!-- AUTO-GENERATED-CONTENT:END -->
+- **node**: >=10
+<!-- AUTO-GENERATED-CONTENT:END -->
