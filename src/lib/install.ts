@@ -23,7 +23,6 @@ function installDependencies(
   return execa(client, ['install'], options);
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export default function install(
   foundTargets: string[],
   options?: execa.CommonOptions<'utf8'>

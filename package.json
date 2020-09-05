@@ -1,6 +1,6 @@
 {
   "name": "install-deps-postmerge",
-  "version": "2.0.0",
+  "version": "2.0.0-alpha8",
   "description": "Install package.json dependencies whenever needed after a git merge",
   "license": "MIT",
   "engines": {
@@ -26,12 +26,12 @@
     "pull"
   ],
   "bin": {
-    "idpm": "dist/bin/index.js",
-    "install-deps-postmerge": "dist/bin/index.js"
+    "idpm": "build/bin/index.js",
+    "install-deps-postmerge": "build/bin/index.js"
   },
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "files": [
-    "dist",
+    "build",
     "LICENSE",
     "README.md",
     "CHANGELOG.md"
@@ -44,7 +44,7 @@
   "scripts": {
     "prebuild": "yon clean",
     "build": "tsc",
-    "clean": "npx rimraf dist/*",
+    "clean": "npx rimraf build/*",
     "commit": "npx git-cz",
     "dev": "tsc -w",
     "docs": "ts-node scripts/markdown.ts",
@@ -57,9 +57,9 @@
     "release": "node-env-run --exec 'semantic-release --ci false'",
     "prerelease-dry-run": "yon gamut",
     "release-dry-run": "node-env-run --exec 'semantic-release --ci false --dry-run'",
-    "reset": "npx rimraf node_modules dist/*",
+    "reset": "npx rimraf node_modules build/*",
     "postreset": "yarn install",
-    "start": "node ./dist/bin/index.js",
+    "start": "node ./build/bin/index.js",
     "start-dev": "ts-node ./src/bin/index.ts",
     "test": "echo No tests yet.",
     "type-check": "tsc --noEmit"

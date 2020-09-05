@@ -1,7 +1,9 @@
-import install from '../index';
+#!/usr/bin/env node
+
+import installDepsPostMerge from '../index';
 import onError from '../lib/onError';
 
-install()
+installDepsPostMerge()
   .then((b) =>
     console.log(b ? '🚚 Dependencies updated!' : '✅ No new dependencies!')
   )

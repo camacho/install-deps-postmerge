@@ -64,10 +64,10 @@ typings/
 .next
 
 # Typescript build output
-dist/
+build/
 
 # NPM build
-pack/
+dist/
 
 # Local options
 .opt-*

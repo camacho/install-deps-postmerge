@@ -2,7 +2,9 @@ import { findChangedFiles } from './lib/git';
 import install from './lib/install';
 import * as defaults from './lib/defaults';
 
-async function installDepsPostMerge(_options = {}): Promise<boolean> {
+export default async function installDepsPostMerge(
+  _options = {}
+): Promise<boolean> {
   const options = { ...defaults, ..._options };
 
   const files = await findChangedFiles(options.query);
@@ -17,5 +19,3 @@ async function installDepsPostMerge(_options = {}): Promise<boolean> {
   await install(foundTargets);
   return true;
 }
-
-export default installDepsPostMerge;
