@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/camacho/install-deps-postmerge/compare/v2.0.0...v2.0.1) (2020-09-05)
+
+### Bug Fixes
+
+- **bin:** fix issue where bin file could not be executed ([811c941](https://github.com/camacho/install-deps-postmerge/commit/811c941))
+
 # [2.0.0](https://github.com/camacho/install-deps-postmerge/compare/v1.0.5...v2.0.0) (2020-08-23)
 
 ### Bug Fixes
