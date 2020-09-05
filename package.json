@@ -1,6 +1,6 @@
 {
   "name": "install-deps-postmerge",
-  "version": "2.0.1-alpha2",
+  "version": "2.0.1-alpha3",
   "description": "Install package.json dependencies whenever needed after a git merge",
   "license": "MIT",
   "engines": {
@@ -132,7 +132,6 @@
     "eslint-plugin-react-hooks": "^4.1.0",
     "git-cz": "^4.7.0",
     "husky": "^4.2.5",
-    "install-deps-postmerge": "^2.0.0",
     "lint-staged": "^10.2.11",
     "markdown-magic": "^1.0.0",
     "markdown-magic-engines": "^1.0.2",
